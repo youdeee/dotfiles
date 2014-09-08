@@ -169,6 +169,6 @@ fi
 function title {
     echo -ne "\033]0;"$*"\007"
 }
-source /Users/youdee/zaw/zaw.zsh
+source ~/zaw/zaw.zsh
 zstyle ':completion:*:default' menu select=1
 setopt glob_dots
