@@ -7,6 +7,7 @@ upgrade
 # Add Repository
 tap homebrew/versions || true
 tap homebrew/binary || true
+tap caskroom/cask || true
 
 # for ricty
 tap sanemat/font
