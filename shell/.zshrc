@@ -48,8 +48,8 @@ RPROMPT="%{$fg[yellow]%}[%~]%{$fg[default]%}"
 #autoload -U promptinit; promptinit
 
 alias rm='rm -r'
+alias srm='sudo rm -r'
 alias cp='cp -r'
-#alias emacs='/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs'
 alias ls='ls -AoFCGB'
 alias cvpp='g++ -Wall -O2 `pkg-config opencv --libs --cflags`'
 alias gcc='gcc -Wall'
@@ -100,6 +100,7 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip
 export PIP_SRC=$PIP_DOWNLOAD_CACHE
 export PIP_RESPECT_VIRTUALENV=true
 export PATH=~/.cabal/bin:$PATH
+export PATH="~/.cask/bin:$PATH"
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -122,7 +123,8 @@ function chpwd() { ls }
 eval "$(pyenv init -)"
 eval "$(plenv init -)"
 
-alias chrome='open -a Google\ Chrome'
+alias google='open -a Google\ Chrome'
+alias gimp='open -a gimp'
 alias -s txt='cat'
 alias -s html='chrome'
 alias -s rb='ruby'
@@ -148,15 +150,6 @@ function runjava () {
 }
 alias -s java='runjava'
 
-# 既にtmuxを起動してないか
-# if [ "$TMUX" = "" ]; then
-#     tmux attach;
-
-#     # detachしてない場合
-#     if [ $? ]; then
-#         tmux;
-#     fi
-# fi
 if [ -z "$TMUX" -a -z "$STY" ]; then
     if type tmux >/dev/null 2>&1; then
         if tmux has-session && tmux list-sessions | grep -qE '.*]$'; then
@@ -169,6 +162,6 @@ fi
 function title {
     echo -ne "\033]0;"$*"\007"
 }
-source ~/zaw/zaw.zsh
+source ~/dotfiles/shell/zaw/zaw.zsh
 zstyle ':completion:*:default' menu select=1
 setopt glob_dots
