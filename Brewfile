@@ -8,6 +8,7 @@ upgrade
 tap homebrew/versions || true
 tap homebrew/binary || true
 tap caskroom/cask || true
+tap caskroom/versions || true
 
 # for ricty
 tap sanemat/font
@@ -16,7 +17,7 @@ tap sanemat/font
 # Packages
 #==================
 install brew-cask
-install rbenv ruby-build zsh git sl ctags mysql tmux openssl ricty cmake fish wget curl cmake libtool automake tig ag z jq httpie autojump subversion pyenv plenv perl-build vim tree mercurial gibo
+install rbenv ruby-build zsh git sl ctags mysql tmux openssl ricty cmake fish wget curl cmake libtool automake tig ag z jq httpie autojump subversion pyenv plenv perl-build vim tree mercurial gibo markdown
 install cask
 
 #==================
@@ -24,7 +25,6 @@ install cask
 #==================
 cask install java
 cask install evernote
-cask install firefox
 cask install google-chrome
 cask install skype
 cask install vlc
@@ -49,6 +49,9 @@ cask install dash
 cask install gimp
 cask install google-japanese-ime
 cask install spark
+cask install thunderbird-ja
+cask install firefox-ja
+cask install heroku-toolbelt
 
 # 不要なファイルを削除
 cleanup
