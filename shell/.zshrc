@@ -124,7 +124,7 @@ function chpwd() { ls }
 eval "$(pyenv init -)"
 eval "$(plenv init -)"
 
-alias google='open -a Google\ Chrome'
+alias g='open -a Google\ Chrome'
 alias gimp='open -a gimp'
 alias -s txt='cat'
 alias -s html='chrome'

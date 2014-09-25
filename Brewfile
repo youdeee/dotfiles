@@ -17,7 +17,7 @@ tap sanemat/font
 # Packages
 #==================
 install brew-cask
-install rbenv ruby-build zsh git sl ctags mysql tmux openssl ricty cmake fish wget curl cmake libtool automake tig ag z jq httpie autojump subversion pyenv plenv perl-build vim tree mercurial gibo markdown
+install rbenv ruby-build zsh git sl ctags mysql tmux openssl ricty cmake fish wget curl cmake libtool automake tig ag z jq httpie autojump subversion pyenv plenv perl-build vim tree mercurial gibo markdown node
 install cask
 
 #==================
