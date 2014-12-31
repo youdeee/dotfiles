@@ -58,6 +58,7 @@ alias cpp='g++ -Wall'
 alias t='tmux'
 alias ta='tmux attach'
 alias ts='tmux source-file ~/.tmux.conf'
+alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -68,7 +69,7 @@ SAVEHIST=100000
 #     `emacs --daemon`
 # fi
 alias e='emacsclient -n'
-alias es='emacsclient -nw'
+alias ec='emacsclient -nw'
 
 setopt IGNORE_EOF #^dのログアウト防止
 setopt NO_CLOBBER #ファイル上書き防止
@@ -92,16 +93,6 @@ path=(
 
 autoload -U tetris
 zle -N tetris
-export PATH=/usr/local/opt/ruby/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/opt/homebrew-cask/Caskroom:$PATH
-export PIP_DOWNLOAD_CACHE=$HOME/.pip
-export PIP_SRC=$PIP_DOWNLOAD_CACHE
-export PIP_RESPECT_VIRTUALENV=true
-export PATH=~/.cabal/bin:$PATH
-export PATH="~/.cask/bin:$PATH"
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -166,9 +157,6 @@ function title {
 source ~/dotfiles/shell/zaw/zaw.zsh
 zstyle ':completion:*:default' menu select=1
 setopt glob_dots
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # ----- PROMPT -----
 function branch-status-check {
