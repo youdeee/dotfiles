@@ -10,6 +10,9 @@ export PIP_SRC=$PIP_DOWNLOAD_CACHE
 export PIP_RESPECT_VIRTUALENV=true
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.cask/bin"
+export GOPATH=$HOME
+export PATH=$PATH:$GOPATH/bin
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 

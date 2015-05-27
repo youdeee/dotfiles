@@ -14,9 +14,9 @@ export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 autoload -Uz compinit #補完機能追加
-compinit -u
+compinit
 
-export LANG=ja_JP.UTF-8
+export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 autoload -Uz colors #色選択
@@ -32,6 +32,7 @@ setopt cdablevars
 setopt list_types
 setopt auto_param_slash
 setopt auto_param_keys
+setopt interactive_comments
 autoload  history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -59,6 +60,8 @@ alias t='tmux'
 alias ta='tmux attach'
 alias ts='tmux source-file ~/.tmux.conf'
 alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
+alias diff='colordiff'
+alias less='less -R'
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -155,7 +158,7 @@ function title {
     echo -ne "\033]0;"$*"\007"
 }
 source ~/dotfiles/shell/zaw/zaw.zsh
-zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*:default' menu select=2
 setopt glob_dots
 
 # ----- PROMPT -----
@@ -198,3 +201,19 @@ function get-branch-status {
         echo ${color} # 色だけ返す
 }
 # }}}
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
