@@ -9,6 +9,7 @@ tap homebrew/versions || true
 tap homebrew/binary || true
 tap caskroom/cask || true
 tap caskroom/versions || true
+tap peco/peco
 
 # for ricty
 tap sanemat/font
@@ -17,7 +18,7 @@ tap sanemat/font
 # Packages
 #==================
 install brew-cask
-install rbenv ruby-build zsh git sl ctags mysql tmux openssl ricty cmake fish wget curl cmake libtool automake tig ag z jq httpie autojump subversion pyenv plenv perl-build vim tree mercurial gibo markdown node
+install rbenv ruby-build zsh git sl ctags mysql tmux openssl ricty cmake fish wget curl cmake libtool automake tig ag z jq httpie autojump subversion pyenv plenv perl-build vim tree mercurial gibo markdown node peco pyenv-pip-rehash boost
 install cask
 
 #==================
@@ -52,6 +53,8 @@ cask install spark
 cask install thunderbird-ja
 cask install firefox-ja
 cask install heroku-toolbelt
+cask install colors
+cask install haroopad
 
 # 不要なファイルを削除
 cleanup

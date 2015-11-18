@@ -6,7 +6,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 # sudo の後ろでコマンド名を補完する
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+       /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
@@ -14,9 +14,9 @@ export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 autoload -Uz compinit #補完機能追加
-compinit -u
+compinit
 
-export LANG=ja_JP.UTF-8
+export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
 autoload -Uz colors #色選択
@@ -32,6 +32,7 @@ setopt cdablevars
 setopt list_types
 setopt auto_param_slash
 setopt auto_param_keys
+setopt interactive_comments
 autoload  history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -59,6 +60,9 @@ alias t='tmux'
 alias ta='tmux attach'
 alias ts='tmux source-file ~/.tmux.conf'
 alias agb='ag binding\.pry\|debugger\;'
+alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
+alias diff='colordiff'
+alias less='less -R'
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -69,7 +73,7 @@ SAVEHIST=100000
 #     `emacs --daemon`
 # fi
 alias e='emacsclient -n'
-alias es='emacsclient -nw'
+alias ec='emacsclient -nw'
 
 setopt IGNORE_EOF #^dのログアウト防止
 setopt NO_CLOBBER #ファイル上書き防止
@@ -93,16 +97,6 @@ path=(
 
 autoload -U tetris
 zle -N tetris
-export PATH=/usr/local/opt/ruby/bin:$PATH
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=/opt/homebrew-cask/Caskroom:$PATH
-export PIP_DOWNLOAD_CACHE=$HOME/.pip
-export PIP_SRC=$PIP_DOWNLOAD_CACHE
-export PIP_RESPECT_VIRTUALENV=true
-export PATH=~/.cabal/bin:$PATH
-export PATH="~/.cask/bin:$PATH"
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -164,27 +158,26 @@ fi
 function title {
     echo -ne "\033]0;"$*"\007"
 }
-zstyle ':completion:*:default' menu select=1
+#zstyle ':completion:*:default' menu select=1
+source ~/dotfiles/shell/zaw/zaw.zsh
+zstyle ':completion:*:default' menu select=2
 setopt glob_dots
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # ----- PROMPT -----
 function branch-status-check {
     local prefix branchname suffix
-        # .gitの中だから除外
-        if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
-            return
-        fi
-        branchname=`get-branch-name`
-        # ブランチ名が無いので除外
-        if [[ -z $branchname ]]; then
-            return
-        fi
-        prefix=`get-branch-status` #色だけ返ってくる
-        suffix='%{'${reset_color}'%}'
-        echo "%{$fg[magenta]%}[${prefix}${branchname}${suffix}%{$fg[magenta]%}]"
+    # .gitの中だから除外
+    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+        return
+    fi
+    branchname=`get-branch-name`
+    # ブランチ名が無いので除外
+    if [[ -z $branchname ]]; then
+        return
+    fi
+    prefix=`get-branch-status` #色だけ返ってくる
+    suffix='%{'${reset_color}'%}'
+    echo "%{$fg[magenta]%}[${prefix}${branchname}${suffix}%{$fg[magenta]%}]"
 }
 function get-branch-name {
     # gitディレクトリじゃない場合のエラーは捨てます
@@ -192,20 +185,36 @@ function get-branch-name {
 }
 function get-branch-status {
     local res color
-        output=`git status --short 2> /dev/null`
-        if [ -z "$output" ]; then
-            res=':' # status Clean
-            color='%{'${fg[green]}'%}'
-        elif [[ $output =~ "[\n]?\?\? " ]]; then
-            res='?:' # Untracked
-            color='%{'${fg[yellow]}'%}'
-        elif [[ $output =~ "[\n]? M " ]]; then
-            res='M:' # Modified
-            color='%{'${fg[red]}'%}'
-        else
-            res='A:' # Added to commit
-            color='%{'${fg[cyan]}'%}'
-        fi
-        # echo ${color}${res}'%{'${reset_color}'%}'
-        echo ${color} # 色だけ返す
+    output=`git status --short 2> /dev/null`
+    if [ -z "$output" ]; then
+        res=':' # status Clean
+        color='%{'${fg[green]}'%}'
+    elif [[ $output =~ "[\n]?\?\? " ]]; then
+        res='?:' # Untracked
+        color='%{'${fg[yellow]}'%}'
+    elif [[ $output =~ "[\n]? M " ]]; then
+        res='M:' # Modified
+        color='%{'${fg[red]}'%}'
+    else
+        res='A:' # Added to commit
+        color='%{'${fg[cyan]}'%}'
+    fi
+    # echo ${color}${res}'%{'${reset_color}'%}'
+    echo ${color} # 色だけ返す
 }
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+                    eval $tac | \
+                    peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
