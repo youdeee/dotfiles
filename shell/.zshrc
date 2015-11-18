@@ -58,6 +58,7 @@ alias cpp='g++ -Wall'
 alias t='tmux'
 alias ta='tmux attach'
 alias ts='tmux source-file ~/.tmux.conf'
+alias agb='ag binding\.pry\|debugger\;'
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -138,11 +139,11 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 # function runcpp () {
 #     g++ -O2 $1
 #     shift
-#     ./a.out $@ 
+#     ./a.out $@
 # }
 # alias -s {c,cpp}='runcpp'
 
-function runjava () { 
+function runjava () {
     className=$1
     className=${className%.java}
     javac $1
@@ -163,7 +164,6 @@ fi
 function title {
     echo -ne "\033]0;"$*"\007"
 }
-source ~/dotfiles/shell/zaw/zaw.zsh
 zstyle ':completion:*:default' menu select=1
 setopt glob_dots
 
@@ -209,4 +209,3 @@ function get-branch-status {
         # echo ${color}${res}'%{'${reset_color}'%}'
         echo ${color} # 色だけ返す
 }
-# }}}
