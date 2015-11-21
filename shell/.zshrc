@@ -1,29 +1,18 @@
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# 補完で小文字でも大文字にマッチさせる
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-# ../ の後は今いるディレクトリを補完しない
-zstyle ':completion:*' ignore-parents parent pwd ..
-# sudo の後ろでコマンド名を補完する
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-       /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-# ps コマンドのプロセス名補完
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
-export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-autoload -Uz compinit #補完機能追加
+autoload -Uz compinit
 compinit
 
-export LANG="ja_JP.UTF-8"
-export LSCOLORS=gxfxcxdxbxegedabagacad
+autoload -Uz promptinit
+promptinit
 
-autoload -Uz colors #色選択
+autoload -Uz colors
 colors
+
+bindkey -e
+
 setopt print_eight_bit
 setopt auto_menu
-bindkey -e
 setopt pushd_ignore_dups
 setopt autopushd
 setopt autocd
@@ -33,22 +22,59 @@ setopt list_types
 setopt auto_param_slash
 setopt auto_param_keys
 setopt interactive_comments
+setopt extended_glob
+setopt prompt_subst
+setopt correct_all
+setopt ignore_eof #^dのログアウト防止
+setopt no_clobber #ファイル上書き防止
+setopt no_tify # バックグラウンドジョブが終了したらすぐに知らせる。
+setopt extended_history
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt no_beep
+setopt ignore_eof
+setopt glob_dots
+setopt mark_dirs
+setopt complete_in_word
+setopt always_last_prompt
+
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
 autoload  history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
+
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
+
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*' # 補完で小文字でも大文字にマッチさせる
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' ignore-parents parent pwd .. # ../ の後は今いるディレクトリを補完しない
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+       /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin # sudo の後ろでコマンド名を補完する
+#zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args' # ps コマンドのプロセス名補完
+
+
+export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+export LANG="ja_JP.UTF-8"
+export LSCOLORS=gxfxcxdxbxegedabagacad
 export EDITOR=emacsclient
-setopt extended_glob
-setopt prompt_subst
-setopt correct_all
-#プロンプトの色変更＆警告時、カラー変化
+
 PROMPT=$'%(?.%{$fg[green]%}.%{${fg[red]}%})%n%%`branch-status-check` %{$fg[default]%}'
 RPROMPT=$'%{$fg[yellow]%}[%~]%{$fg[default]%}'
 
-#autoload -U promptinit; promptinit
-
+alias sudo='sudo '
 alias rm='rm -r'
 alias srm='sudo rm -r'
 alias cp='cp -r'
@@ -63,9 +89,17 @@ alias agb='ag binding\.pry\|debugger\;'
 alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
 alias diff='colordiff'
 alias less='less -R'
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+
+alias g='open -a Google\ Chrome'
+alias gimp='open -a gimp'
+alias -s txt='cat'
+alias -s html='chrome'
+alias -s rb='ruby'
+alias -s py='python'
+alias -s hs='runhaskell'
+alias -s php='php -f'
+alias -s {gz,tar,zip,rar,7z}='unarchive' # preztoのarchiveモジュールのコマンド(https://github.com/sorin-ionescu/prezto/tree/master/modules)
+alias -s {gif,jpg,jpeg,png,bmp}='display'
 
 # if pgrep -f '[Ee]macs' >/dev/null 2>&1; then
 #     echo "Emacs server is already running..."
@@ -75,13 +109,6 @@ SAVEHIST=100000
 alias e='emacsclient -n'
 alias ec='emacsclient -nw'
 
-setopt IGNORE_EOF #^dのログアウト防止
-setopt NO_CLOBBER #ファイル上書き防止
-setopt no_tify # バックグラウンドジョブが終了したらすぐに知らせる。
-setopt EXTENDED_HISTORY
-setopt share_history
-setopt hist_ignore_all_dups
-setopt hist_reduce_blanks
 
 # -------------------------------------
 # パス
@@ -94,9 +121,6 @@ path=(
     /usr/local/sbin(N-/)
     $path
 )
-
-autoload -U tetris
-zle -N tetris
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -119,16 +143,6 @@ function chpwd() { ls }
 eval "$(pyenv init -)"
 eval "$(plenv init -)"
 
-alias g='open -a Google\ Chrome'
-alias gimp='open -a gimp'
-alias -s txt='cat'
-alias -s html='chrome'
-alias -s rb='ruby'
-alias -s py='python'
-alias -s hs='runhaskell'
-alias -s php='php -f'
-alias -s {gz,tar,zip,rar,7z}='unarchive' # preztoのarchiveモジュールのコマンド(https://github.com/sorin-ionescu/prezto/tree/master/modules)
-alias -s {gif,jpg,jpeg,png,bmp}='display'
 
 # function runcpp () {
 #     g++ -O2 $1
@@ -158,10 +172,7 @@ fi
 function title {
     echo -ne "\033]0;"$*"\007"
 }
-#zstyle ':completion:*:default' menu select=1
-source ~/dotfiles/shell/zaw/zaw.zsh
-zstyle ':completion:*:default' menu select=2
-setopt glob_dots
+
 
 # ----- PROMPT -----
 function branch-status-check {
@@ -216,5 +227,6 @@ function peco-select-history() {
     CURSOR=$#BUFFER
     zle clear-screen
 }
+
 zle -N peco-select-history
 bindkey '^r' peco-select-history
