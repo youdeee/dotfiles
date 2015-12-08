@@ -36,7 +36,7 @@ setopt no_beep
 setopt ignore_eof
 setopt glob_dots
 setopt mark_dirs
-#setopt complete_in_word
+setopt complete_in_word
 setopt always_last_prompt
 
 HISTFILE=~/.zsh_history
