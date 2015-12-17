@@ -140,7 +140,7 @@ fi
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-function chpwd() { ls }
+function chpwd() { l }
 eval "$(pyenv init -)"
 eval "$(plenv init -)"
 
