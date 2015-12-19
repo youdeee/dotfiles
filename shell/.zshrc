@@ -79,7 +79,8 @@ alias sudo='sudo '
 alias rm='rm -r'
 alias srm='sudo rm -r'
 alias cp='cp -r'
-alias ls='ls -AoFCGB'
+alias l='ls -AoFCGB'
+alias ls='ls -AoFGB'
 alias cvpp='g++ -Wall -O2 `pkg-config opencv --libs --cflags`'
 alias gcc='gcc -Wall'
 alias cpp='g++ -Wall'
@@ -140,7 +141,7 @@ fi
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-function chpwd() { ls }
+function chpwd() { l }
 eval "$(pyenv init -)"
 eval "$(plenv init -)"
 
