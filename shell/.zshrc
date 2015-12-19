@@ -38,6 +38,7 @@ setopt glob_dots
 setopt mark_dirs
 setopt complete_in_word
 setopt always_last_prompt
+setopt nonomatch
 
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
@@ -108,7 +109,7 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 # fi
 alias e='emacsclient -n'
 alias ec='emacsclient -nw'
-
+alias kille="emacsclient -e '(kill-emacs)'"
 
 # -------------------------------------
 # パス
