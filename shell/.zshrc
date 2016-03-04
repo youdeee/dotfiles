@@ -111,7 +111,7 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 alias e='emacsclient -n'
 alias ec='emacsclient -nw'
 alias kille="emacsclient -e '(kill-emacs)'"
-alias etag='ctags -e -R .'
+alias tage='ctags -e -R --exclude=*.js .'
 
 # -------------------------------------
 # パス
