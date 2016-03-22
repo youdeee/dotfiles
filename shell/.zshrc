@@ -88,6 +88,8 @@ alias t='tmux'
 alias ta='tmux attach'
 alias ts='tmux source-file ~/.tmux.conf'
 alias agb='ag binding\.pry\|debugger\;'
+alias agt='ag --ignore TAGS'
+
 alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
 alias diff='colordiff'
 alias less='less -R'
