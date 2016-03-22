@@ -87,8 +87,8 @@ alias cpp='g++ -Wall'
 alias t='tmux'
 alias ta='tmux attach'
 alias ts='tmux source-file ~/.tmux.conf'
-alias agb='ag binding\.pry\|debugger\;'
-alias agt='ag --ignore TAGS'
+alias agb='ag --ignore TAGS --ignore vendor binding\.pry\|debugger\;'
+alias agr='ag --ignore TAGS --ignore vendor'
 
 alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
 alias diff='colordiff'
