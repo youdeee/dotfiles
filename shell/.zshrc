@@ -114,7 +114,7 @@ alias e='emacsclient -n'
 alias ec='emacsclient -nw'
 alias kille="emacsclient -e '(kill-emacs)'"
 alias tage='ctags -e -R --exclude=*.js .'
-
+alias mk='mkdircd'
 # -------------------------------------
 # パス
 # -------------------------------------
@@ -148,6 +148,10 @@ function chpwd() { l }
 eval "$(pyenv init -)"
 eval "$(plenv init -)"
 
+function mkdircd () {
+    mkdir $1
+    cd $1
+}
 
 # function runcpp () {
 #     g++ -O2 $1
