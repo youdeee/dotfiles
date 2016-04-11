@@ -16,5 +16,5 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip
 export PIP_SRC=$PIP_DOWNLOAD_CACHE
 export PIP_RESPECT_VIRTUALENV=true
 export GOPATH=$HOME
-export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python2.7/site-packages/"
+#export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python2.7/site-packages/"
 eval "$(rbenv init -)"
