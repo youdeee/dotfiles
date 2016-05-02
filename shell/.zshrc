@@ -70,7 +70,7 @@ export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
-export EDITOR="emacs -q"
+export ALTERNATE_EDITOR=vi EDITOR=emacsclient VISUAL=emacsclient
 
 PROMPT=$'%(?.%{$fg[green]%}.%{${fg[red]}%})%n%%`branch-status-check` %{$fg[default]%}'
 RPROMPT=$'%{$fg[yellow]%}[%~]%{$fg[default]%}'
