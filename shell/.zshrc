@@ -70,12 +70,12 @@ export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
-export EDITOR=emacsclient
+export EDITOR="emacs -q"
 
 PROMPT=$'%(?.%{$fg[green]%}.%{${fg[red]}%})%n%%`branch-status-check` %{$fg[default]%}'
 RPROMPT=$'%{$fg[yellow]%}[%~]%{$fg[default]%}'
 
-alias sudo='sudo '
+#alias sudo='sudo'
 alias rm='rm -r'
 alias srm='sudo rm -r'
 alias cp='cp -r'
@@ -110,6 +110,7 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 # else
 #     `emacs --daemon`
 # fi
+#alias emacsclient='/usr/local/Cellar/emacs/24.4/bin/emacsclient'
 alias e='emacsclient -n'
 alias ec='emacsclient -nw'
 alias kille="emacsclient -e '(kill-emacs)'"
@@ -239,3 +240,6 @@ function peco-select-history() {
 
 zle -N peco-select-history
 bindkey '^r' peco-select-history
+
+export NVM_DIR="/Users/youdee/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
