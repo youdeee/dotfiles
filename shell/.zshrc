@@ -71,6 +71,7 @@ export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
 export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export ALTERNATE_EDITOR=vi EDITOR=emacsclient VISUAL=emacsclient
+export TERM="xterm-256color"
 
 PROMPT=$'%(?.%{$fg[green]%}.%{${fg[red]}%})%n%%`branch-status-check` %{$fg[default]%}'
 RPROMPT=$'%{$fg[yellow]%}[%~]%{$fg[default]%}'
