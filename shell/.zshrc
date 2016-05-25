@@ -115,8 +115,10 @@ alias -s {gif,jpg,jpeg,png,bmp}='display'
 alias e='emacsclient -n'
 alias ec='emacsclient -nw'
 alias kille="emacsclient -e '(kill-emacs)'"
+alias es='emacs -q -l simple-init.el'
 alias tage='ctags -e -R --exclude=*.js .'
 alias mk='mkdircd'
+
 # -------------------------------------
 # パス
 # -------------------------------------
