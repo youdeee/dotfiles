@@ -105,7 +105,7 @@ alias -s hs='runhaskell'
 alias -s php='php -f'
 alias -s {gz,tar,zip,rar,7z}='unarchive' # preztoのarchiveモジュールのコマンド(https://github.com/sorin-ionescu/prezto/tree/master/modules)
 alias -s {gif,jpg,jpeg,png,bmp}='display'
-alias rn='rails new --skip-turbolinks --skip-test --skip-bundle'
+alias rn='rails new --skip-turbolinks --skip-bundle'
 
 # if pgrep -f '[Ee]macs' >/dev/null 2>&1; then
 #     echo "Emacs server is already running..."
