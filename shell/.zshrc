@@ -72,11 +72,19 @@ export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export ALTERNATE_EDITOR=vi EDITOR=emacsclient VISUAL=emacsclient
 export TERM="xterm-256color"
+export LESS='-g -i -M -R -S -W -z-4 -x4'
+export PAGER=less
+export LESS_TERMCAP_mb=$'\E[01;31m'      # Begins blinking.
+export LESS_TERMCAP_md=$'\E[01;31m'      # Begins bold.
+export LESS_TERMCAP_me=$'\E[0m'          # Ends mode.
+export LESS_TERMCAP_se=$'\E[0m'          # Ends standout-mode.
+export LESS_TERMCAP_so=$'\E[00;47;30m'   # Begins standout-mode.
+export LESS_TERMCAP_ue=$'\E[0m'          # Ends underline.
+export LESS_TERMCAP_us=$'\E[01;32m'      # Begins underline.
 
 PROMPT=$'%(?.%{$fg[green]%}.%{${fg[red]}%})%n%%`branch-status-check` %{$fg[default]%}'
 RPROMPT=$'%{$fg[yellow]%}[%~]%{$fg[default]%}'
 
-#alias sudo='sudo'
 alias rm='rm -r'
 alias srm='sudo rm -r'
 alias cp='cp -r'
@@ -245,5 +253,5 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-export NVM_DIR="/Users/youdee/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
