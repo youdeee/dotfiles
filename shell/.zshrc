@@ -72,7 +72,7 @@ export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export ALTERNATE_EDITOR=vi EDITOR=emacsclient VISUAL=emacsclient
 export TERM="xterm-256color"
-export LESS='-g -i -M -R -S -W -z-4 -x4'
+export LESS='-g -i -M -R -W -z-4 -x4'
 export PAGER=less
 export LESS_TERMCAP_mb=$'\E[01;31m'      # Begins blinking.
 export LESS_TERMCAP_md=$'\E[01;31m'      # Begins bold.
@@ -101,7 +101,6 @@ alias agr='ag --ignore TAGS --ignore vendor'
 
 alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
 alias diff='colordiff'
-alias less='less -R'
 
 alias g='open -a Google\ Chrome'
 alias gimp='open -a gimp'
@@ -132,13 +131,13 @@ alias mk='mkdircd'
 # パス
 # -------------------------------------
 # 重複する要素を自動的に削除
-typeset -U path cdpath fpath manpath
-path=(
-    $HOME/bin(N-/)
-    /usr/local/bin(N-/)
-    /usr/local/sbin(N-/)
-    $path
-)
+# typeset -U path cdpath fpath manpath
+# path=(
+#     $HOME/bin(N-/)
+#     /usr/local/bin(N-/)
+#     /usr/local/sbin(N-/)
+#     $path
+# )
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -154,12 +153,7 @@ elif which putclip >/dev/null 2>&1 ; then
 fi
 
 
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 function chpwd() { l }
-eval "$(pyenv init -)"
-eval "$(plenv init -)"
 
 function mkdircd () {
     mkdir $1
@@ -173,15 +167,6 @@ function mkdircd () {
 # }
 # alias -s {c,cpp}='runcpp'
 
-function runjava () {
-    className=$1
-    className=${className%.java}
-    javac $1
-    shift
-    java $className $@
-}
-alias -s java='runjava'
-
 if [ -z "$TMUX" -a -z "$STY" ]; then
     if type tmux >/dev/null 2>&1; then
         if tmux has-session && tmux list-sessions | grep -qE '.*]$'; then
@@ -194,7 +179,6 @@ fi
 function title {
     echo -ne "\033]0;"$*"\007"
 }
-
 
 # ----- PROMPT -----
 function branch-status-check {
@@ -255,3 +239,28 @@ bindkey '^r' peco-select-history
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(plenv init -)"
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
+
+export PIP_DOWNLOAD_CACHE=$HOME/.pip
+export PIP_SRC=$PIP_DOWNLOAD_CACHE
+export PIP_RESPECT_VIRTUALENV=true
+export GOPATH=$HOME/.go
+#export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python2.7/site-packages/"
+
+export PATH="/usr/local/bin:$HOME/bin:$PATH:" # $HOME/.nodebrew/current/bin
+export PATH="$PATH:/bin:/usr/bin:/usr/local/sbin"
+export PATH="$PATH:$HOME/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/rcodetools-0.8.5.0/bin"
+export PATH="$PATH:/usr/local/opt/ruby/bin"
+# export PATH="$PATH:$HOME/.rbenv/bin"
+export PATH="$PATH:/opt/homebrew-cask/Caskroom"
+export PATH="$PATH:$HOME/.cabal/bin"
+export PATH="$PATH:$HOME/.cask/bin"
+#export PATH="/Applications/Xcode6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+export PATH="$PATH:/usr/local/opt/go/libexec/bin"
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools"
+export PATH="$PATH:/usr/local/heroku/bin"
+export PATH="$PATH:$GOPATH/bin"
