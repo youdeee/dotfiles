@@ -252,6 +252,7 @@ export GOPATH=$HOME/.go
 #export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python2.7/site-packages/"
 
 export PATH="/usr/local/bin:$HOME/bin:$PATH:" # $HOME/.nodebrew/current/bin
+export PATH="$PATH:/usr/local/opt/mysql@5.6/bin"
 export PATH="$PATH:/bin:/usr/bin:/usr/local/sbin"
 export PATH="$PATH:$HOME/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/rcodetools-0.8.5.0/bin"
 export PATH="$PATH:/usr/local/opt/ruby/bin"
