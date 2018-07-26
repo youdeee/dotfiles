@@ -82,7 +82,7 @@ export LESS_TERMCAP_so=$'\E[00;47;30m'   # Begins standout-mode.
 export LESS_TERMCAP_ue=$'\E[0m'          # Ends underline.
 export LESS_TERMCAP_us=$'\E[01;32m'      # Begins underline.
 
-PROMPT=$'%(?.%{$fg[green]%}.%{${fg[red]}%})%n%%`branch-status-check` %{$fg[default]%}'
+PROMPT=$'%(?.%{$fg[green]%}.%{${fg[red]}%})~~>`branch-status-check` %{$fg[default]%}'
 RPROMPT=$'%{$fg[yellow]%}[%~]%{$fg[default]%}'
 
 alias rm='rm -r'
@@ -99,7 +99,7 @@ alias ts='tmux source-file ~/.tmux.conf'
 alias agb='ag --ignore TAGS --ignore vendor binding\.pry\|debugger\;'
 alias agr='ag --ignore TAGS --ignore vendor'
 
-alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
+# alias brew="env PATH=${PATH/\/Users\/youdee\/\.pyenv\/shims:/} brew"
 alias diff='colordiff'
 
 alias g='open -a Google\ Chrome'
@@ -237,31 +237,30 @@ function peco-select-history() {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-eval "$(plenv init -)"
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
+# eval "$(plenv init -)"
+# eval "$(pyenv init -)"
+# eval "$(rbenv init -)"
+eval "$(anyenv init -)"
 
-export PIP_DOWNLOAD_CACHE=$HOME/.pip
-export PIP_SRC=$PIP_DOWNLOAD_CACHE
-export PIP_RESPECT_VIRTUALENV=true
-export GOPATH=$HOME/.go
-#export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python2.7/site-packages/"
+# export PIP_DOWNLOAD_CACHE=$HOME/.pip
+# export PIP_SRC=$PIP_DOWNLOAD_CACHE
+# export PIP_RESPECT_VIRTUALENV=true
+# export GOPATH=$HOME/.go
+# export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python2.7/site-packages/"
 
-export PATH="$HOME/.nodebrew/current/bin:/usr/local/bin:$HOME/bin:$PATH:"
-export PATH="$PATH:/usr/local/opt/mysql@5.6/bin"
+export PATH="$HOME/.anyenv/bin:/usr/local/bin:$HOME/bin:$PATH:"
+# export PATH="$PATH:/usr/local/opt/mysql@5.6/bin"
 export PATH="$PATH:/bin:/usr/bin:/usr/local/sbin"
-export PATH="$PATH:$HOME/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/rcodetools-0.8.5.0/bin"
-export PATH="$PATH:/usr/local/opt/ruby/bin"
+# export PATH="$PATH:$HOME/.rbenv/versions/2.1.1/lib/ruby/gems/2.1.0/gems/rcodetools-0.8.5.0/bin"
+# export PATH="$PATH:/usr/local/opt/ruby/bin"
 # export PATH="$PATH:$HOME/.rbenv/bin"
-export PATH="$PATH:/opt/homebrew-cask/Caskroom"
-export PATH="$PATH:$HOME/.cabal/bin"
-export PATH="$PATH:$HOME/.cask/bin"
-#export PATH="/Applications/Xcode6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
-export PATH="$PATH:/usr/local/opt/go/libexec/bin"
-export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools"
-export PATH="$PATH:/usr/local/heroku/bin"
-export PATH="$PATH:$GOPATH/bin"
+# export PATH="$PATH:/opt/homebrew-cask/Caskroom"
+# export PATH="$PATH:$HOME/.cabal/bin"
+# export PATH="$PATH:$HOME/.cask/bin"
+# export PATH="/Applications/Xcode6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
+# export PATH="$PATH:/usr/local/opt/go/libexec/bin"
+# export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools"
