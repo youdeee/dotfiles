@@ -240,17 +240,11 @@ bindkey '^r' peco-select-history
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-# eval "$(plenv init -)"
-# eval "$(pyenv init -)"
-# eval "$(rbenv init -)"
-eval "$(anyenv init -)"
-
-# export PIP_DOWNLOAD_CACHE=$HOME/.pip
 # export PIP_SRC=$PIP_DOWNLOAD_CACHE
 # export PIP_RESPECT_VIRTUALENV=true
 # export GOPATH=$HOME/.go
 # export PYTHONPATH=$PYTHONPATH:"/usr/local/lib/python2.7/site-packages/"
+# export PIP_DOWNLOAD_CACHE=$HOME/.pip
 
 export PATH="$HOME/.anyenv/bin:/usr/local/bin:$HOME/bin:$PATH:"
 # export PATH="$PATH:/usr/local/opt/mysql@5.6/bin"
@@ -264,3 +258,12 @@ export PATH="$PATH:/bin:/usr/bin:/usr/local/sbin"
 # export PATH="/Applications/Xcode6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 # export PATH="$PATH:/usr/local/opt/go/libexec/bin"
 # export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools"
+
+export PATH=$PATH:/Applications/"Android Studio.app"/Contents/jre/jdk/Contents/Home/bin
+export JAVA_HOME=/Applications/"Android Studio.app"/Contents/jre/jdk/Contents/Home
+
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# eval "$(plenv init -)"
+# eval "$(pyenv init -)"
+# eval "$(rbenv init -)"
+eval "$(anyenv init -)"
