@@ -257,7 +257,7 @@ export PATH="$PATH:/bin:/usr/bin:/usr/local/sbin"
 # export PATH="$PATH:$HOME/.cask/bin"
 # export PATH="/Applications/Xcode6.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH"
 # export PATH="$PATH:/usr/local/opt/go/libexec/bin"
-# export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/tools"
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
 export PATH=$PATH:/Applications/"Android Studio.app"/Contents/jre/jdk/Contents/Home/bin
 export JAVA_HOME=/Applications/"Android Studio.app"/Contents/jre/jdk/Contents/Home
