@@ -123,7 +123,7 @@ alias rn='rails new --skip-turbolinks --skip-bundle'
 alias e='emacsclient -n'
 alias ec='emacsclient -nw'
 alias kille="emacsclient -e '(kill-emacs)'"
-alias es='emacs -q -l simple-init.el'
+alias es='emacs -q -l ~/.spacemacs.d/simple-init.el'
 alias tage='ctags -e -R --exclude=*.js .'
 alias mk='mkdircd'
 
