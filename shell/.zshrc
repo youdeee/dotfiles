@@ -67,7 +67,7 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args' # ps コマンド�
 
 
 export WORDCHARS="|*?_-.[]~=&;!#$%^(){}<>"
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+# [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 export LANG="ja_JP.UTF-8"
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export ALTERNATE_EDITOR=vi EDITOR=emacsclient VISUAL=emacsclient

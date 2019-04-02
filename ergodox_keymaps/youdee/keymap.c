@@ -8,6 +8,11 @@
 #define SYMB 2 // symbols
 #define MDIA 3 // media keys
 
+// RESET COMMAND
+// @~/qmk_firmware
+// make ergodox_ez:youdee
+// teensy_loader_cli -mmcu=atmega32u4 -w -v ergodox_ez_youdee.hex
+
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
   EPRM,
@@ -42,13 +47,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [BASE] = LAYOUT_ergodox(  // layer 0 : default
         // left hand
         KC_GRAVE,         KC_1,         KC_2,   KC_3,   KC_4,   KC_5,   KC_ESC,
-        KC_TAB,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   KC_TAB,
-        CTL_T(KC_CAPS),        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
-        KC_LSFT,        KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,   KC_ENT,
+        KC_TAB,        KC_Q,         KC_W,   KC_E,   KC_R,   KC_T,   KC_ENT,
+        KC_CAPS,        KC_A,         KC_S,   KC_D,   KC_F,   KC_G,
+        KC_LSFT,        KC_Z,  KC_X,   KC_C,   KC_V,   KC_B,   KC_SPC,
         MO(SYMB),     TG(WIN),     KC_LALT,  KC_RALT,KC_LGUI,
-                                                     TG(SYMB),KC_BSPC,
+                                                     KC_LSFT,KC_BSPC,
                                                               KC_DEL,
-                                              KC_LCTL,KC_SPC,KC_LANG2,
+                                             KC_LCTL,KC_TAB,KC_LANG2,
         // right hand
              KC_EQL,     KC_6,   KC_7,  KC_8,   KC_9,   KC_0,             KC_MINS,
              KC_LBRC,    KC_Y,   KC_U,  KC_I,   KC_O,   KC_P,             KC_BSLS,
@@ -56,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              KC_RBRC,KC_N,   KC_M,  KC_COMM,KC_DOT, KC_SLSH,   KC_RSFT,
                                        KC_SPC, KC_LEFT, KC_DOWN,KC_UP,KC_RIGHT,
              KC_RCTL,KC_RALT,
-             KC_FN1,
+             TG(SYMB),//KC_FN1,
              KC_LANG1,  KC_RSFT, KC_RGUI
     ),
 
@@ -105,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [SYMB] = LAYOUT_ergodox(
        // left hand
        VRSN,   KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  RESET,
-       KC_TRNS,KC_EXLM,KC_AT,  KC_LCBR,KC_RCBR,KC_PIPE,KC_APP,
+       KC_TRNS,KC_EXLM,KC_AT,  KC_LCBR,KC_RCBR,KC_PIPE,RESET,
        KC_TRNS,KC_HASH,KC_DLR, KC_LPRN,KC_RPRN,KC_GRV,
        EPRM,KC_PERC,KC_CIRC,KC_LBRC,KC_RBRC,KC_TILD,KC_TRNS,
        KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,
