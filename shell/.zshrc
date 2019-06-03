@@ -267,3 +267,24 @@ export JAVA_HOME=/Applications/"Android Studio.app"/Contents/jre/jdk/Contents/Ho
 # eval "$(pyenv init -)"
 # eval "$(rbenv init -)"
 eval "$(anyenv init -)"
+
+function br() {
+    if ls coverage/.last_run.json > /dev/null && ls coverage/.run_log.txt > /dev/null; then
+        percentage=`jq ".result.covered_percent" coverage/.last_run.json`
+        date=`date "+%Y-%m-%d %H:%M:%S"`
+        echo "${date},${percentage}" >> coverage/.run_log.txt
+    fi
+    bundle exec rspec
+}
+
+function bra() {
+    bin/rails assets:clobber
+    bin/rails assets:precompile
+    br
+}
+
+alias rubo="bundle exec rubocop -a"
+function rc() {
+    s=`git show --pretty="" --name-only HEAD | tr '\n' ' '`
+    eval "rubo ${s}"
+}
