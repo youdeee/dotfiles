@@ -288,3 +288,14 @@ function rc() {
     s=`git show --pretty="" --name-only HEAD | tr '\n' ' '`
     eval "rubo ${s}"
 }
+
+function grep_kill() {
+    ps ux | grep $1 | grep -v grep | awk -F' ' '{print "kill -9", $2}' | sh
+}
+alias gk='grep_kill'
+
+function cap_deploy() {
+    git tag $1
+    bundle exec cap staging deploy
+}
+alias dep='cap_deploy'
